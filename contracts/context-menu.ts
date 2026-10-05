@@ -1,6 +1,7 @@
 export const contextMenuContract = {
   tag: "pd-context-menu",
   selectors: { trigger: "[data-menu-for]", item: '[role="menuitem"], [role="menuitemradio"]' },
+  attributes: { keepOpen: "data-menu-keep-open" },
   events: { action: "pd-menu-action", scope: "pd-menu-scope" },
 } as const;
 

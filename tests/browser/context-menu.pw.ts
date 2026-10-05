@@ -84,6 +84,24 @@ test("pointer can open two submenu levels and commit from the deepest level", as
   await expect(page.locator("#menu-fixture button[data-menu-for]")).toBeFocused();
 });
 
+test("an action in a keep-open menu emits without closing until light dismiss", async ({ page }) => {
+  await page.evaluate(() => {
+    (window as any).__actions = [];
+    document.querySelector("#fixture-menu")!.addEventListener("pd-menu-action", (event) => {
+      (window as any).__actions.push((event as CustomEvent).detail);
+    });
+  });
+  await page.locator("#menu-fixture button[data-menu-for]").click();
+  const menu = page.locator("#fixture-menu");
+  await menu.getByRole("menuitem", { name: "More" }).click();
+  await menu.getByRole("menuitem", { name: "Copy" }).click();
+  await expect(menu).toBeVisible();
+  await expect(menu.locator("#fixture-sub-one")).toBeVisible();
+  expect(await page.evaluate(() => (window as any).__actions)).toEqual([{ action: "copy", contextId: "row-a" }]);
+  await page.locator("#outside").click();
+  await expect(menu).not.toBeVisible();
+});
+
 test("hover switches submenu branches at the same depth", async ({ page }) => {
   await page.locator("#menu-fixture button[data-menu-for]").click();
   const menu = page.locator("#fixture-menu");

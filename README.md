@@ -21,6 +21,8 @@ card contract while sharing the insertion and pointer mechanics.
 `pd-context-menu` is a template-first, backend-neutral action menu. Server-rendered items and nested submenus are
 cloned on open with a target `contextId`; the menu handles popover placement, keyboard navigation, and focus return,
 then emits `{ action, contextId }`. The page owns action handling and may morph the template with fresh server HTML.
+An action closes the menu by default. Add `data-menu-keep-open` to an action or an enclosing menu when several actions
+must remain available until light dismiss, Escape, or `closeMenu()` closes the menu.
 For fetched menu fragments, render a direct child marked `data-pd-menu-content` instead of a template and call
 `openFor(trigger)` after the page installs the fragment. `closeMenu(refocus?)` and `isOpen()` expose the lifecycle;
 `pd-menu-scope` emits `{ root, active }` for page-owned keyboard scopes. Live content remains in the DOM on close.

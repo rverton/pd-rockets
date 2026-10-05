@@ -205,6 +205,8 @@ function setupMenu(
         }),
       );
     }
+    const keepOpen = item.closest<HTMLElement>(`[${contextMenuContract.attributes.keepOpen}]`);
+    if (keepOpen && content.contains(keepOpen)) return;
     close(true);
   };
   const onHover = (event: MouseEvent) => {

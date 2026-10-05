@@ -107,7 +107,7 @@ const html = renderHTML(
               More
             </button>
             <div id="fixture-sub-one" role="menu" popover="auto">
-              <button type="button" role="menuitem" data-action="copy">
+              <button type="button" role="menuitem" data-action="copy" data-menu-keep-open>
                 Copy
               </button>
               <button type="button" role="menuitem" data-submenu="fixture-sub-two" aria-haspopup="menu">

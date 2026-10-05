@@ -1247,7 +1247,9 @@ pd-menu-action → { action, contextId }`}</code>
                   light dismiss; CSS anchors position the menu and flip nested panels at viewport edges, with measured
                   coordinates as a fallback. Your CSS owns the presentation. Context placeholders bind in text,{" "}
                   <code>data-menu-param-*</code>, <code>aria-label</code>, and <code>title</code> attributes; executable
-                  directives are left as server-rendered.
+                  directives are left as server-rendered. Actions close the menu by default. Add{" "}
+                  <code>data-menu-keep-open</code> to an action or enclosing menu when several actions must remain
+                  available until light dismiss, Escape, or <code>closeMenu()</code> closes the menu.
                 </p>
                 <p>
                   For fresh options, fetch page-owned HTML before opening and morph the template, or render a direct
